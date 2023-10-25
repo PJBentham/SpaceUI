@@ -1,3 +1,5 @@
+import config
+#import logging
 from langchain.agents import ConversationalChatAgent, AgentExecutor, create_sql_agent
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
@@ -5,9 +7,6 @@ from langchain.tools import Tool
 from langchain.agents.agent_types import AgentType
 from langchain.agents.agent_toolkits import SQLDatabaseToolkit
 from langchain.utilities.sql_database import SQLDatabase
-import config
-
-
 
 class LLMServices:
     def __init__(self, socketio):
@@ -22,6 +21,18 @@ class LLMServices:
         )
 
         self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+
+        self.db_info = SQLDatabase.from_uri("sqlite:///instance/captains_log.db")
+        self.toolkit = SQLDatabaseToolkit(db=self.db_info, llm=self.llm)
+
+        self.db_chain = create_sql_agent(
+            llm=self.llm,
+            toolkit=self.toolkit,
+            verbose=True,
+            agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+            handle_parsing_errors=True
+        )
+
         self.tools = self._initialize_tools()
 
         self.conversation_agent = ConversationalChatAgent.from_llm_and_tools(
@@ -41,17 +52,6 @@ class LLMServices:
             handle_parsing_errors=True
         )
 
-        self.db_info = SQLDatabase.from_uri("sqlite:///instance/captains_log.db")
-        self.toolkit = SQLDatabaseToolkit(db=self.db_info, llm=self.llm)
-
-        self.db_chain = create_sql_agent(
-            llm=self.llm,
-            toolkit=self.toolkit,
-            verbose=True,
-            agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-            handle_parsing_errors=True
-        )
-
         self._register_socketio_events()
 
     def _initialize_tools(self):
@@ -66,7 +66,11 @@ class LLMServices:
                 func=self.get_speedvalue_tool,
                 description="Only to be used when asked the current speed",
             ),
-            # Add other tools as needed
+            Tool(
+                name="Captains_Log_Database",
+                func=self.db_chain.run,
+                description="useful for when you need to answer questions about the captains logs"
+            )
         ]
         return tools
 
