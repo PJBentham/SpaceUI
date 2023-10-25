@@ -1,0 +1,24 @@
+<div class="row mt-4">
+    <div class="col-12" id="captainsLogPanel" style="display: none;">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Captain's Log</h2>
+            </div>
+            <div class="card-body">
+                <div id="logContainer">
+                    {% for entry in entries %}
+                    <h4>Date: {{ entry.date }}</h4>
+                    <h5>{{ entry.title }}</h5>
+                    <p>{{ entry.content }}</p>
+                    <hr>
+                    {% endfor %}
+                </div>
+                <form id="logForm" action="/add_log" method="post">
+                    <input type="text" name="log_title" placeholder="Log Title">
+                    <textarea name="log_content" placeholder="Record your logs here, Captain..."></textarea>
+                    <button type="submit">Save Log</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

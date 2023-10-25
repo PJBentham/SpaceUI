@@ -1,0 +1,76 @@
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2>Control Panel</h2>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <button id="hyperdriveButton" class="btn btn-block btn-primary" onclick="initiateHyperdrive()">
+                  Initiate Hyperdrive
+                </button>
+              </div>
+              <div class="col-6">
+                <button id="emergencyStopButton" class="btn btn-block btn-danger" onclick="emergencyStop()">
+                  Emergency Stop
+                </button>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">Engines:</div>
+              <div class="col-6 text-success">Operational</div>
+            </div>
+            <div class="row mt-2" id="speedDisplay">
+                <div class="col-6">Speed:</div>
+                <div class="col-6">
+                    <span id="speedValue">0</span> LY/h
+                </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">Communications:</div>
+              <div class="col-6 text-danger" id="status">Offline</div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="enginePower">Engine Power:</label>
+              </div>
+              <div class="col-6">
+                <input type="range" id="enginePower" oninput="updateSpeed()" value="0" min="0" max="100">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <label for="shieldStrength">Shield Strength:</label>
+              </div>
+              <div class="col-6">
+                <input type="range" id="shieldStrength" oninput="playSliderSound()" value="0">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6 d-flex align-items-center">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="lightSwitch" onchange="playSwitchSound()">
+                  <label class="custom-control-label" for="lightSwitch">Light
+                  </label>
+                </div>
+              </div>
+              <div class="col-6 d-flex align-items-center">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="communicationSwitch" onchange="toggleCommsPanel()">
+                  <label class="custom-control-label" for="communicationSwitch">Communications</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6 d-flex align-items-center">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="captainsLogSwitch" onchange="toggleCaptainsLog()">
+                  <label class="custom-control-label" for="captainsLogSwitch">Captains Logs</label>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End of Card Body -->
+        </div> <!-- End of Control Panel Card -->
+      </div> <!-- End of Control Panel Column -->
+    </div>
