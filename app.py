@@ -43,6 +43,7 @@ def get_logs():
     entries = Log.query.all()
     return render_template('logs_partial.html', entries=entries)
 
+# Socket for updating logs
 @socketio.on('submit_log')
 def handle_submit_log(data):
     log_title = data.get('log_title')
@@ -54,6 +55,7 @@ def handle_submit_log(data):
         db.session.commit()
         socketio.emit('update_logs', broadcast=True)
 
+# Socket for sending messages
 @socketio.on('send_message')
 def handle_message(data):
     user_input = data['message']

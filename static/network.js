@@ -40,6 +40,7 @@ export function initializeSocketListeners() {
             console.log('Failed to submit log.');
         }
     });
+    // Socket for receiving logs
     socket.on('update_logs', function() {
         const logContainer = document.getElementById('logContainer');
         if (logContainer) {
