@@ -69,7 +69,7 @@ class LLMServices:
             Tool(
                 name="Captains_Log_Database",
                 func=self.db_chain.run,
-                description="useful for when you need to answer questions about the captains logs"
+                description="Only to be used when specifically asked about the Captain's Log"
             )
         ]
         return tools

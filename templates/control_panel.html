@@ -7,12 +7,12 @@
           <div class="card-body">
             <div class="row">
               <div class="col-6">
-                <button id="hyperdriveButton" class="btn btn-block btn-primary" onclick="initiateHyperdrive()">
+                <button id="hyperdriveButton" class="btn btn-block btn-primary">
                   Initiate Hyperdrive
                 </button>
               </div>
               <div class="col-6">
-                <button id="emergencyStopButton" class="btn btn-block btn-danger" onclick="emergencyStop()">
+                <button id="emergencyStopButton" class="btn btn-block btn-danger">
                   Emergency Stop
                 </button>
               </div>
@@ -36,7 +36,7 @@
                 <label for="enginePower">Engine Power:</label>
               </div>
               <div class="col-6">
-                <input type="range" id="enginePower" oninput="updateSpeed()" value="0" min="0" max="100">
+                <input type="range" id="enginePower" value="0" min="0" max="100">
               </div>
             </div>
             <div class="row mt-2">
@@ -44,20 +44,20 @@
                 <label for="shieldStrength">Shield Strength:</label>
               </div>
               <div class="col-6">
-                <input type="range" id="shieldStrength" oninput="playSliderSound()" value="0">
+                <input type="range" id="shieldStrength" value="0">
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-6 d-flex align-items-center">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="lightSwitch" onchange="playSwitchSound()">
+                  <input type="checkbox" class="custom-control-input" id="lightSwitch">
                   <label class="custom-control-label" for="lightSwitch">Light
                   </label>
                 </div>
               </div>
               <div class="col-6 d-flex align-items-center">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="communicationSwitch" onchange="toggleCommsPanel()">
+                  <input type="checkbox" class="custom-control-input" id="communicationSwitch">
                   <label class="custom-control-label" for="communicationSwitch">Communications</label>
                 </div>
               </div>
@@ -65,7 +65,7 @@
             <div class="row mt-2">
               <div class="col-6 d-flex align-items-center">
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="captainsLogSwitch" onchange="toggleCaptainsLog()">
+                  <input type="checkbox" class="custom-control-input" id="captainsLogSwitch">
                   <label class="custom-control-label" for="captainsLogSwitch">Captains Logs</label>
                 </div>
               </div>
