@@ -1,5 +1,3 @@
-import config
-#import logging
 from langchain.agents import ConversationalChatAgent, AgentExecutor, create_sql_agent
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
@@ -14,7 +12,6 @@ class LLMServices:
         self.speed_value_cache = 0
 
         self.llm = ChatOpenAI(
-            openai_api_key=config.OPENAI_API_KEY,
             model_name="gpt-3.5-turbo",
             max_tokens=540,
             temperature=0.7
